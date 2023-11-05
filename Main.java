@@ -30,8 +30,7 @@ public class Main {
             long endTime = System.nanoTime();
 
             if (!isSorted(array)) {
-                System.out.println("[-] Not sorted!");
-                return;
+                throw new RuntimeException("[-] " + fileName + " not sorted!");
             }
 
             System.out.println("[+] " + fileName + " sorted successfully!");
