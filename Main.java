@@ -3,7 +3,7 @@ import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
-        // DatasetUtil.generateDatasets();
+        DatasetUtil.generateDatasets();
 
         Map<String, ArrayList<Integer>> bcisDatasets = DatasetUtil.loadDatasets();
         performSorting(bcisDatasets, new BCIS());

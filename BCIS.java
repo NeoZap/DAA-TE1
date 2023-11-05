@@ -59,6 +59,15 @@ public class BCIS implements SortingAlgorithm {
 
             int i = sl + 1;
             if (sr - sl >= 100) {
+                /*
+                INTERESTING NOTE:
+                `sl + Math.sqrt(1.0 * sr - sl)` as the optimization upper bound
+                will make the code run a lot faster (on random datasets) than using
+                `Math.sqrt(1.0 * sr - sl)` as the optimization upper bound
+                (which is the original implementation from the paper).
+                But for the purpose of the assignment, I will use the latter.
+                 */
+                // for (; i <= sl + Math.sqrt(1.0 * sr - sl); i++) {
                 for (; i <= Math.sqrt(1.0 * sr - sl); i++) {
                     if (array.get(sr) < array.get(i)) {
                         swap(array, sr, i);
