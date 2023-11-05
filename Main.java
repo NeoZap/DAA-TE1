@@ -3,7 +3,7 @@ import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
-        DatasetUtil.generateDatasets();
+        //DatasetUtil.generateDatasets();
 
         Map<String, ArrayList<Integer>> bcisDatasets = DatasetUtil.loadDatasets();
         performSorting(bcisDatasets, new BCIS());
@@ -24,9 +24,9 @@ public class Main {
             Runtime.getRuntime().gc();
 
             long startTime = System.nanoTime();
-            long memoryBefore = Runtime.getRuntime().freeMemory();
+            long memoryUsageBefore = getMemoryUsage();
             sortingAlgorithm.sort(array);
-            long memoryAfter = Runtime.getRuntime().freeMemory();
+            long memoryUsageAfter = getMemoryUsage();
             long endTime = System.nanoTime();
 
             if (!isSorted(array)) {
@@ -35,7 +35,7 @@ public class Main {
 
             System.out.println("[+] " + fileName + " sorted successfully!");
             System.out.println("\tTime: " + (endTime - startTime) * 1e-6 + " ms");
-            System.out.println("\tMemory: " + (memoryBefore - memoryAfter) + " bytes");
+            System.out.println("\tMemory: " + (memoryUsageAfter - memoryUsageBefore) + " bytes");
         }
     }
 
@@ -47,5 +47,10 @@ public class Main {
             }
         }
         return true;
+    }
+
+    private static long getMemoryUsage() {
+        Runtime runtime = Runtime.getRuntime();
+        return runtime.totalMemory() - runtime.freeMemory();
     }
 }

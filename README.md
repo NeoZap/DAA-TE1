@@ -12,3 +12,18 @@ In the examined paper, there appears to be a flawed implementation of the BCIS a
 ![Problematic BCIS Section](assets/image.png)
 
 The BCIS algorithm's time complexity is calculated to be O(n^1.5), primarily due to the section of pseudocode highlighted above. This portion ensures that during each sorting trip, at least sqrt(n) elements are inserted, leading to a running time complexity of O(n^1.5) based on mathematical calculations. However, the flaw in the current pseudocode is that it uses (SR - SL)^0.5 as the upper bound of the loop, which guarantees that only the first sorting trip will insert sqrt(n) elements. To optimize the algorithm and maintain a consistent O(n^1.5) complexity for every sorting step, we should use SL + (SR - SL)^0.5 instead. I don't think it will affect the correctness of the algorithm (cap lmaooo), but it will definitely improve the running time of the algorithm (on average case).
+
+### Proof of Concept - How to Run
+1. Clone the repository
+2. Run the following command to compile and run the program:
+```
+javac *.java
+java Main
+```
+3. Uncomment line 70 and comment line 71 in BCIS.java 
+4. Run the following command to compile and run the program:
+```
+javac *.java
+java Main
+```
+5. You will surely notice that the running time of BCIS on random50000.txt is significantly, no, A WHOLE LOT faster after doing step 3.
